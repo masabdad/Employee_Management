@@ -1,24 +1,26 @@
 package com.employee.managment.Employee.Management.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import org.hibernate.annotations.GeneratorType;
-
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "Attendance")
 public class Attendance {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int attendanceId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long attendanceId;
 
+    @ManyToOne
     @JoinColumn(name = "employeeId")
-    private int employeeId;
-    private Date date;
-    private LocalDateTime checkIn;
-    private LocalDateTime checkOut;
-    private float hoursWorked;
+    private Employee employee;
 
+    @Temporal(TemporalType.DATE)
+    private Date date;
+
+    private String checkInTime;
+    private String checkOutTime;
+    private Double hoursWorked;
+
+    // Getters and Setters
 }
