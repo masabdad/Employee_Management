@@ -8,7 +8,7 @@ import java.util.List;
 public interface EducationService {
     ResponseEntity<List<Education>> getEmployeesEducation(Long id);
 
-    ResponseEntity<Education> getAllEducation(Education edu);
+    ResponseEntity<List<Education>> getAllEducation();
 
     ResponseEntity<Education> addEmployeeEducation(Education education);
 

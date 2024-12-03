@@ -1,11 +1,8 @@
 package com.employee.managment.Employee.Management.controller;
-
-
 import com.employee.managment.Employee.Management.model.Employee;
-import com.employee.managment.Employee.Management.model.Performance;
-import com.employee.managment.Employee.Management.model.enums.Status;
 import com.employee.managment.Employee.Management.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,11 +56,10 @@ public class EmployeeController {
         return employeeService.getNewestEmployee();
     }
 
-    @PutMapping("/updateStatus/{activeEmployeeId}/{newStatus}")
+    @PutMapping(value = "/updateStatus/{activeEmployeeId}/{newStatus}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Employee> updateEmployeeStatus(
             @PathVariable Long activeEmployeeId,
             @PathVariable String newStatus) {
-
         return employeeService.updateEmployeeStatus(activeEmployeeId, newStatus);
     }
 

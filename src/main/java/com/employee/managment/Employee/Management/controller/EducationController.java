@@ -2,6 +2,7 @@ package com.employee.managment.Employee.Management.controller;
 
 import com.employee.managment.Employee.Management.model.Education;
 import com.employee.managment.Employee.Management.service.EducationService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,12 @@ public class EducationController {
     }
 
     @GetMapping("/getAllEducation")
-    public ResponseEntity<Education> getAllEducation(@RequestBody Education edu){
-        return educationService.getAllEducation(edu);
+    public ResponseEntity<List<Education>> getAllEducation(){
+        return educationService.getAllEducation();
     }
 
     @PostMapping("/addEducation")
+    @Operation(summary = "Adding Eduction")
     public ResponseEntity<Education> addEducation(@RequestBody Education education){
         return educationService.addEmployeeEducation(education);
     }

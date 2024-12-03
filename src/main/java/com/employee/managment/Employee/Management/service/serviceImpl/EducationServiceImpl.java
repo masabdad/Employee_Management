@@ -37,10 +37,10 @@ public class EducationServiceImpl implements EducationService {
     }
 
     @Override
-    public ResponseEntity<Education> getAllEducation(Education edu) {
+    public ResponseEntity<List<Education>> getAllEducation() {
         try {
            List<Education> education= educationRepo.findAll();
-            return new ResponseEntity<>(edu,HttpStatus.OK);
+            return new ResponseEntity<>(education,HttpStatus.OK);
         }catch (Exception ex){
             ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

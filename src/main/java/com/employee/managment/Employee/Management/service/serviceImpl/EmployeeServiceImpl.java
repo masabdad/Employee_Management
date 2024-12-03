@@ -147,8 +147,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         Employee employee = activeEmployeeOptional.get();
         employee.setStatus(Status.valueOf(newStatus));
-        employeeRepo.save(employee);
-        return new ResponseEntity<>(employee,HttpStatus.OK);
+        return new ResponseEntity<>(employeeRepo.save(employee),HttpStatus.OK);
+//        return new ResponseEntity<>(employee,HttpStatus.OK);
     }
 
 }

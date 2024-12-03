@@ -21,4 +21,37 @@ public class Skills {
     private ProficiencyLevel proficiencyLevel;
 
     // Getters and Setters
+
+
+    public Long getSkillId() {
+        return skillId;
+    }
+
+    public void setSkillId(Long skillId) {
+        this.skillId = skillId;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public String getSkillName() {
+        return skillName;
+    }
+
+    public void setSkillName(String skillName) {
+        this.skillName = skillName;
+    }
+
+    public ProficiencyLevel getProficiencyLevel() {
+        return proficiencyLevel;
+    }
+
+    public void setProficiencyLevel(ProficiencyLevel proficiencyLevel) {
+        this.proficiencyLevel = proficiencyLevel;
+    }
 }

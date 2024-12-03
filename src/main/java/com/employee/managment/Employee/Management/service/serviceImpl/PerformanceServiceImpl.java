@@ -48,11 +48,12 @@ public class PerformanceServiceImpl implements PerformanceService {
     @Override
     public ResponseEntity<List<Performance>> getEmployeeReviewById(Long id) {
         try {
-            Optional<Employee> employee = employeeRepo.findById(id);
-            List<Performance> performances=employee.get().getPerformance();
-            return new ResponseEntity<>(performances, HttpStatus.OK);
+          Optional<Employee> employee = employeeRepo.findById(id);
+          List<Performance> performance = employee.get().getPerformance();
+          return new ResponseEntity<>(performance, HttpStatus.OK);
         }catch (Exception ex){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            ex.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
