@@ -1,14 +1,17 @@
 package com.employee.managment.Employee.Management.service.serviceImpl;
 
 import com.employee.managment.Employee.Management.model.Employee;
-import com.employee.managment.Employee.Management.model.Performance;
 import com.employee.managment.Employee.Management.model.enums.Status;
 import com.employee.managment.Employee.Management.repository.EmployeeRepo;
 import com.employee.managment.Employee.Management.repository.PerformanceRepo;
 import com.employee.managment.Employee.Management.service.EmployeeService;
+import org.junit.jupiter.api.BeforeEach;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,7 +26,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     PerformanceRepo performanceRepo;
     @Autowired
     EmployeeRepo employeeRepo;
-
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
     @Override
     public ResponseEntity<List<Employee>> getAllEmployees() {
         try {
@@ -41,6 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public ResponseEntity<Employee> addEmployee(Employee employee) {
         try {
+            employee.setPassword(passwordEncoder.encode(employee.getPassword()));
             employeeRepo.save(employee);
             return new ResponseEntity<>(employee, HttpStatus.OK);
         } catch (Exception ex) {
@@ -147,7 +156,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         Employee employee = activeEmployeeOptional.get();
         employee.setStatus(Status.valueOf(newStatus));
-        return new ResponseEntity<>(employeeRepo.save(employee),HttpStatus.OK);
+        return new ResponseEntity<>(employeeRepo.save(employee), HttpStatus.OK);
 //        return new ResponseEntity<>(employee,HttpStatus.OK);
     }
 

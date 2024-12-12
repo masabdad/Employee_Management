@@ -1,11 +1,11 @@
 package com.employee.managment.Employee.Management.model;
 
+import com.employee.managment.Employee.Management.model.enums.Role;
 import com.employee.managment.Employee.Management.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
@@ -14,12 +14,17 @@ import java.util.List;
 @Table(name = "employee")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long employeeId;
     private String firstName;
     private String lastName;
+    private String userName;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     private String gender;
     private Date dateOfBirth;
     private String nationality;
@@ -54,7 +59,10 @@ public class Employee {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Documents> documents;
 
- // Getters and Setters
+    public Employee(int i, String johnDoe) {
+    }
+
+    // Getters and Setters
 
 
     public String getFirstName() {
@@ -200,5 +208,29 @@ public class Employee {
 
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

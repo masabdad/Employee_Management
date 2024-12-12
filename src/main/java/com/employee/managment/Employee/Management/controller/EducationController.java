@@ -4,18 +4,19 @@ import com.employee.managment.Employee.Management.model.Education;
 import com.employee.managment.Employee.Management.service.EducationService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/education")
+@RequestMapping(value="/education")
 public class EducationController {
     @Autowired
     EducationService educationService;
 
-    @GetMapping("/getEmployeeEducation/{id}")
+    @GetMapping(value = "/getEmployeeEducation/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Education>> getEducationByEmployeeId(@PathVariable Long id){
         return educationService.getEmployeesEducation(id);
     }
