@@ -60,9 +60,4 @@ public class Employee {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Documents> documents;
 
-    public Employee(int i, String johnDoe) {
-    }
-
-    // Getters and Setters
-
 }
