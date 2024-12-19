@@ -8,6 +8,7 @@ import com.employee.managment.Employee.Management.repository.EmployeeRepo;
 import com.employee.managment.Employee.Management.repository.PerformanceRepo;
 import com.employee.managment.Employee.Management.service.EducationService;
 import com.employee.managment.Employee.Management.service.EmployeeService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -198,6 +199,7 @@ public class EducationServiceImpl implements EducationService {
             return new ResponseEntity<>(filteredEmployees, HttpStatus.OK);
         }
 
+        @SneakyThrows
         @Override
         public ResponseEntity<Employee> getNewestEmployee() {
             List<Employee> employees = employeeRepo.findAll();
