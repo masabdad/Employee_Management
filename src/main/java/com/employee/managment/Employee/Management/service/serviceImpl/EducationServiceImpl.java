@@ -8,6 +8,7 @@ import com.employee.managment.Employee.Management.repository.EmployeeRepo;
 import com.employee.managment.Employee.Management.repository.PerformanceRepo;
 import com.employee.managment.Employee.Management.service.EducationService;
 import com.employee.managment.Employee.Management.service.EmployeeService;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.*;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Service
 public class EducationServiceImpl implements EducationService {
     @Autowired

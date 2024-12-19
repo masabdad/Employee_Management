@@ -1,5 +1,6 @@
 package com.employee.managment.Employee.Management.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import java.util.Date;
 @Getter
 @Builder
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "Attendance")
 public class Attendance {
 

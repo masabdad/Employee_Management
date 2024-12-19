@@ -1,11 +1,13 @@
 package com.employee.managment.Employee.Management.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Setter
 @Getter
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name="education")
 @AllArgsConstructor
 @NoArgsConstructor

@@ -4,6 +4,7 @@ import com.employee.managment.Employee.Management.model.Attendance;
 import com.employee.managment.Employee.Management.repository.AttendanceRepo;
 import com.employee.managment.Employee.Management.repository.EmployeeRepo;
 import com.employee.managment.Employee.Management.service.AttendanceService;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
     @Autowired
