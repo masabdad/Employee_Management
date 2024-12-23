@@ -4,7 +4,7 @@ node{
 
     try{
     stage ('Clone Repo'){
-    github url:'https://github.com/masabdad/Employee_Management'
+    github url:'https://github.com/masabdad/Employee_Management/tree/develop'
         credentialId:'masabdad'
         branch:'develop'
         }
