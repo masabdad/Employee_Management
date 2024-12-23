@@ -1,0 +1,15 @@
+# Dockerfile
+FROM maven:3.3.6-jdk-20-alpine AS build
+
+WORKDIR /app
+
+COPY  /app
+RUN mvn clean install -Diskiptests
+
+FROM openJdk:200-jdk-alpine
+
+COPY target/employee-management-system.jar /app/employee-management-system.jar
+
+ENV PORT 8081
+EXPOSE $PORT
+ENTRYPOINT ["java", "-jar", "employee-management-system.jar"]

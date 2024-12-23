@@ -1,0 +1,24 @@
+node{
+    def WORKSPACE = "/var/lib/jenkins/employee-management-system"
+    def dockerImageTag= "employee-management-system${env.BUILD_NUMBER}"
+
+    try{
+    stage ('Clone Repo'){
+    github url:'https://github.com/masabdad/Employee_Management.github'
+        credentialId:'masabdad'
+        branch:'develop'
+        }
+        stage ('Build Docker'){
+        dockerImage : docker.build("employee-management-system${env.BUILD_NUMBER}")
+    }
+        stage ('Deploy Docker'){
+        echo  "Docker Image Tag Name" : ${dockerImageTag}
+        sh "docker stop employee-management-system || true && docker rm employee-management-system || true"
+        sh "docker run --name employee-management-system -d -p 8081:8081 employee-management-system:${env.BUILD_NUMBER}"
+        }
+
+    }catch(Exception e){
+    throw e
+
+    }
+}
