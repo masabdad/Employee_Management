@@ -10,7 +10,7 @@ pipeline {
         stage('Clone Repo') {
             steps {
                 git branch: 'develop', 
-                    url: 'https://github.com/masabdad/Employee_Management/tree/develop',
+                    url: 'https://github.com/masabdad/Employee_Management.git',
                     credentialsId: 'masabdad'
             }
         }
