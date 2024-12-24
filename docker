@@ -1,0 +1,5 @@
+# Dockerfile
+FROM openjdk:20-jre-slim
+COPY target/employee-management-system.jar /app/employee-management-system.jar
+WORKDIR /app
+ENTRYPOINT ["java", "-jar", "employee-management-system.jar"]

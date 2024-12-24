@@ -1,12 +1,11 @@
 package com.employee.managment.Employee.Management.service;
 
 import com.employee.managment.Employee.Management.model.Employee;
-import com.employee.managment.Employee.Management.model.Performance;
-import com.employee.managment.Employee.Management.model.enums.Status;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
+
 
 public interface EmployeeService {
     ResponseEntity<List<Employee>> getAllEmployees();

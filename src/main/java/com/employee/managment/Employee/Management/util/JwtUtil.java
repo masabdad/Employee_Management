@@ -1,5 +1,6 @@
 package com.employee.managment.Employee.Management.util;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
@@ -8,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Component
 public class JwtUtil {
     private final String SECRET_KEY = "mahsabdad12";

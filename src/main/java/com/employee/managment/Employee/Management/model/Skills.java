@@ -1,6 +1,7 @@
 package com.employee.managment.Employee.Management.model;
 
 import com.employee.managment.Employee.Management.model.enums.ProficiencyLevel;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "skills")
 public class Skills {
 

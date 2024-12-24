@@ -3,6 +3,7 @@ package com.employee.managment.Employee.Management.service.serviceImpl;
 import com.employee.managment.Employee.Management.model.LeaveManagement;
 import com.employee.managment.Employee.Management.repository.LeaveRepo;
 import com.employee.managment.Employee.Management.service.LeaveService;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Service
 public class LeaveServiceImpl implements LeaveService {
     @Autowired

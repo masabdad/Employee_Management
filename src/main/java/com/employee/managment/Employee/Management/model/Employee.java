@@ -2,6 +2,7 @@ package com.employee.managment.Employee.Management.model;
 
 import com.employee.managment.Employee.Management.model.enums.Role;
 import com.employee.managment.Employee.Management.model.enums.Status;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "employee")
 @AllArgsConstructor
 @NoArgsConstructor

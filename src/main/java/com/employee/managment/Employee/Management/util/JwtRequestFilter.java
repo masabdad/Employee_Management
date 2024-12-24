@@ -1,10 +1,12 @@
 package com.employee.managment.Employee.Management.util;
 
 import com.employee.managment.Employee.Management.conf.CustomEmployeeDetailsService;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Configuration
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -25,8 +27,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     JwtUtil jwtUtil;
 
+    @SneakyThrows
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)  {
         String authorizationHeader = request.getHeader("Authorization");
         String username = null;
         String token = null;

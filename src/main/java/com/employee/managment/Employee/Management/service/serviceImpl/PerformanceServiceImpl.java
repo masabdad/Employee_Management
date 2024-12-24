@@ -6,6 +6,7 @@ import com.employee.managment.Employee.Management.repository.EmployeeRepo;
 import com.employee.managment.Employee.Management.repository.PerformanceRepo;
 import com.employee.managment.Employee.Management.service.EmployeeService;
 import com.employee.managment.Employee.Management.service.PerformanceService;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Service
 public class PerformanceServiceImpl implements PerformanceService {
     @Autowired

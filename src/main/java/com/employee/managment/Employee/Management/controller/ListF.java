@@ -14,19 +14,18 @@ public class ListF {
                 .distinct()
                 .collect(Collectors.toList());
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         float floatValue = 123.45f;
         String convertedString = String.valueOf(floatValue);
+        String replace = convertedString.replace(".", "");
+        String reversedString = String.valueOf(new StringBuilder(replace).reverse());
+        String string = new StringBuilder(reversedString).insert(3, ".").toString();
+        System.out.println(string);
+    }*/
 
-        String[] splittedString = convertedString.split("\\.");
-
-        String stringBeforeDecimal = splittedString[0];
-        String stringsAfterDecimal =  splittedString[1];
-        String reversedStringFirstIndex = new StringBuilder(stringBeforeDecimal).reverse().toString();
-        String reversedStringSecondIndex = new StringBuilder(stringsAfterDecimal).reverse().toString();
-        String reversedFloat = reversedStringFirstIndex + "." + reversedStringSecondIndex;
-        System.out.println(reversedFloat);
-
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 2, 3, 4, 4, 5);
+        System.out.println(numbers);
 
     }
 }
