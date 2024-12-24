@@ -1,59 +1,26 @@
-pipeline {
-    agent any
+node{
+    def WORKSPACE = "/var/lib/jenkins/employee-management-system"
+    def dockerImageTag= "employee-management-system${env.BUILD_NUMBER}"
 
-    environment {
-        WORKSPACE = "/var/lib/jenkins/employee-management-system"
-        DOCKER_IMAGE_TAG = "employee-management-system:${env.BUILD_NUMBER}"
+    try{
+    stage ('Clone Repo'){
+    git url:'https://github.com/masabdad/Employee_Management/tree/develop'
+        credentialId:'masabdad'
+        branch:'develop'
+        }
+        stage ('Build Docker'){
+        dockerImage : docker.build("employee-management-system${env.BUILD_NUMBER}")
     }
-
-    stages {
-        stage('Clone Repo') {
-            steps {
-                git branch: 'develop', 
-                    url: 'https://github.com/masabdad/Employee_Management/tree/develop',
-                    credentialsId: 'masabdad'
-            }
+        stage ('Deploy Docker'){
+        echo  "Docker Image Tag Name : ${dockerImageTag}"
+        sh "docker stop employee-management-system || true && docker rm employee-management-system || true"
+        sh "docker run --name employee-management-system -d -p 8081:8081 employee-management-system:${env.BUILD_NUMBER}"
         }
 
-        stage('Build Docker') {
-            steps {
-                script {
-                    // Build Docker image
-                    dockerImage = docker.build(env.DOCKER_IMAGE_TAG)
-                }
-            }
-        }
+    }catch(Exception e){
+    throw e
 
-        stage('Deploy Docker') {
-            steps {
-                script {
-                    echo "Docker Image Tag Name: ${env.DOCKER_IMAGE_TAG}"
-                    
-                    // Stop and remove the existing container if it exists
-                    sh """
-                    docker stop employee-management-system || true
-                    docker rm employee-management-system || true
-                    """
-
-                    // Run the new Docker container
-                    sh """
-                    docker run --name employee-management-system -d -p 8081:8081 ${env.DOCKER_IMAGE_TAG}
-                    """
-                }
-            }
-        }
-    }
-
-    post {
-        always {
-            // Clean workspace after build
-            cleanWs()
-        }
-        success {
-            echo "Pipeline completed successfully!"
-        }
-        failure {
-            echo "Pipeline failed!"
-        }
     }
 }
+
+See my jenkins file
