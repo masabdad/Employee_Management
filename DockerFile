@@ -1,15 +1,27 @@
-# Dockerfile
-FROM maven:3.3.6-jdk-20-alpine AS build
+# Stage 1: Build
+FROM maven:3.8.6-openjdk-20 AS build
 
 WORKDIR /app
 
-COPY  /app
-RUN mvn clean install -Diskiptests
+# Copy all project files to the container
+COPY . .
 
-FROM openJdk:200-jdk-alpine
+# Build the project and skip tests
+RUN mvn clean install -DskipTests
 
-COPY target/employee-management-system.jar /app/employee-management-system.jar
+# Stage 2: Runtime
+FROM openjdk:20-jdk-alpine
 
-ENV PORT 8081
-EXPOSE $PORT
+WORKDIR /app
+
+# Copy the built jar file from the previous stage
+COPY --from=build /app/target/employee-management-system.jar .
+
+# Set environment variables
+ENV PORT=8081
+
+# Expose the application port
+EXPOSE 8081
+
+# Command to run the application
 ENTRYPOINT ["java", "-jar", "employee-management-system.jar"]
