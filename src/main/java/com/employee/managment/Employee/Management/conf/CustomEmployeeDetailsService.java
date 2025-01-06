@@ -2,7 +2,6 @@ package com.employee.managment.Employee.Management.conf;
 
 import com.employee.managment.Employee.Management.model.Employee;
 import com.employee.managment.Employee.Management.repository.EmployeeRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,8 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomEmployeeDetailsService implements UserDetailsService {
 
-    @Autowired
-    EmployeeRepo employeeRepo;
+
+    private EmployeeRepo employeeRepo;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
